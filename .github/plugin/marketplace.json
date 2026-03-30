@@ -1,0 +1,26 @@
+{
+  "name": "test-marketplace",
+  "metadata": {
+    "description": "Octave plugins, agents, prompts, and skills",
+    "version": "1.0.0",
+    "pluginRoot": "./plugins"
+  },
+  "owner": {
+    "name": "Octave",
+    "email": "gopi-muthu"
+  },
+  "plugins": [
+    {
+      "name": "code-review",
+      "source": "code-review",
+      "description": "Review the code",
+      "version": "1.0.0"
+    },
+    {
+      "name": "write-mcat",
+      "source": "write-mcat",
+      "description": "Helps to write mcat",
+      "version": "1.1.0"
+    }
+  ]
+}
