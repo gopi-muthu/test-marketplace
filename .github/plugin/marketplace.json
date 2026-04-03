@@ -12,13 +12,13 @@
   "plugins": [
     {
       "name": "code-review",
-      "source": "code-review",
+      "source": "/fort3d/code-review",
       "description": "Review the code",
       "version": "1.0.0"
     },
     {
       "name": "write-mcat",
-      "source": "write-mcat",
+      "source": "/forte3d/write-mcat",
       "description": "Helps to write mcat",
       "version": "1.1.0"
     }
