@@ -1,13 +1,13 @@
 {
-  "name": "test-marketplace",
+  "name": "octave-copilot-plugins",
   "metadata": {
     "description": "Octave plugins, agents, prompts, and skills",
     "version": "1.0.0",
     "pluginRoot": "./plugins"
   },
   "owner": {
-    "name": "Octave",
-    "email": "gopi-muthu"
+    "name": "Trekkers",
+    "email": "scrumteamtrekkers.us.ali@hexagon.com"
   },
   "plugins": [
     {

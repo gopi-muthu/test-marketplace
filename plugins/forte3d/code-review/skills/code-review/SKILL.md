@@ -128,7 +128,7 @@ Confirm to the user which comments were posted successfully.
 
 Load the appropriate guidelines file with `read_file` **before analyzing** any changed files:
 
-- **[csharp-coding-guidelines.md](../s3dx-shared/coding-guidelines/csharp-coding-guidelines.md)** — Project C# coding standards (naming, formatting, patterns, best practices). Load it **only** when the review includes `.cs` files.
+- **[csharp-coding-guidelines.md](../../../shared/coding-guidelines/csharp-coding-guidelines.md)** — Project C# coding standards (naming, formatting, patterns, best practices). Load it **only** when the review includes `.cs` files.
 
 ---
 
@@ -156,7 +156,7 @@ Apply these checks to all changed code:
 
 - Dead code or unreachable paths introduced
 - Redundant or duplicate logic compared to existing helpers
-- Naming inconsistencies — for C# files, validate against `../s3dx-shared/coding-guidelines/csharp-coding-guidelines.md`;
+- Naming inconsistencies — for C# files, validate against `../../../shared/coding-guidelines/csharp-coding-guidelines.md`;
 
 ---
 
