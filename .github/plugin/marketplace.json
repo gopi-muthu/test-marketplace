@@ -12,7 +12,7 @@
   "plugins": [
     {
       "name": "code-review",
-      "source": "/fort3d/code-review",
+      "source": "/forte3d/code-review",
       "description": "Review the code",
       "version": "1.0.0"
     },
