@@ -156,7 +156,7 @@ Apply these checks to all changed code:
 
 - Dead code or unreachable paths introduced
 - Redundant or duplicate logic compared to existing helpers
-- Naming inconsistencies — for C# files, validate against `../../../shared/coding-guidelines/csharp-coding-guidelines.md`;
+- Naming inconsistencies — for C# files, validate against ` ../../../shared/coding-guidelines/csharp-coding-guidelines.md`;
 
 ---
 

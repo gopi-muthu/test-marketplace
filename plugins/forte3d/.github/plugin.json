@@ -1,0 +1,23 @@
+{
+  "name": "forte3d",
+  "description": "Provides the skills for Forte3D development workflows.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Trekkers",
+    "email": "scrumteamtrekkers.us.ali@hexagon.com"
+  },  
+  "keywords": [
+    "code review",
+    "pr review",
+    "mcat",
+    "no ui command",
+    "dialog command"
+  ],
+  "skills": [
+    "./skills/code-review",
+    "./skills/write-mcat",
+    "./skills/command-entry(preview)",
+    "./skills/noui-command(preview)",
+    "./skills/dialog-command(preview)"      
+  ]
+}
