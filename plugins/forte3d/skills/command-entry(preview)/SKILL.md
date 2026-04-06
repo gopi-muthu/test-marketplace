@@ -1,5 +1,5 @@
 ---
-name: command-entry
+name: command-entry(preview)
 description: >
   Guides adding new S3Dx command entries to the XML configuration files (Commands.xml, DevelopmentCommands.xml, Ribbon.xml, DevelopmentRibbon.xml).
   Use this skill whenever the user wants to add a new command, promote a prototype command to production, register a command in the ribbon,

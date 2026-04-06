@@ -1,5 +1,5 @@
 ---
-name: noui-command
+name: noui-command(preview)
 description: Writes S3Dx NoUI (no user interface) commands in C# using BaseFrameworkCommand with CommandUILayout.NoUI. Use when the user asks to create a NoUI command, background command, fire-and-forget command, batch operation command, or any command that runs without a ribbon/dialog UI. Also trigger when they mention CommandUILayout.NoUI, or non-interactive command patterns.
 ---
 # S3Dx NoUI Command Writing Skill

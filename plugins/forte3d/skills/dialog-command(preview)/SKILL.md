@@ -1,5 +1,5 @@
 ---
-name: dialog-command
+name: dialog-command(preview)
 description: >
   Writes S3Dx Dialog Commands in C# using BaseFrameworkCommand with CommandUILayout.Dialog.
   Use this skill whenever the user asks to create a dialog command, modal dialog command, dialog-based command,
