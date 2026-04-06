@@ -15,6 +15,12 @@
       "source": "forte3d",
       "description": "Provides the skills for Forte3D development workflows.",
       "version": "1.0.0"
+    },
+    {
+      "name": "Trekkers",
+      "source": "trekkers",
+      "description": "Provides the skills for Trekkers development workflows.",
+      "version": "1.0.0"
     }
   ]
 }
