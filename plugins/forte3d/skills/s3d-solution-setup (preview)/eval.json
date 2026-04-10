@@ -1,0 +1,264 @@
+{
+  "skill": "s3d-solution-setup (preview)",
+  "version": "1.0",
+  "description": "Evaluation cases for the s3d-solution-setup SKILL.md — verifies trigger discovery, input gathering (Step 0), and all scaffolding phases (1–5).",
+
+  "cases": [
+
+    {
+      "id": "trigger-01",
+      "category": "skill-discovery",
+      "description": "Explicit ClientCommands request should load the skill",
+      "prompt": "Create a new ClientCommands project for Equipment",
+      "expectedBehavior": "Skill is invoked; agent runs Step 0 to resolve component root and gather GUIDs before creating any files.",
+      "mustNotDo": "Create files before completing Step 0 input gathering."
+    },
+    {
+      "id": "trigger-02",
+      "category": "skill-discovery",
+      "description": "Explicit Client request should load the skill",
+      "prompt": "Set up a new Client solution for SpaceManagement",
+      "expectedBehavior": "Skill is invoked; ProjectSuffix is set to 'Client'; RootPath ends with '\\Client'.",
+      "mustNotDo": "Default to ClientCommands suffix when user explicitly asks for Client."
+    },
+    {
+      "id": "trigger-03",
+      "category": "skill-discovery",
+      "description": "Component name alone (without suffix) should still load the skill",
+      "prompt": "scaffold S3D module for Compartment",
+      "expectedBehavior": "Skill is invoked; agent asks/infers ProjectSuffix (defaults to ClientCommands if not determinable from codebase).",
+      "mustNotDo": "Ignore the request or create a generic project without following the skill workflow."
+    },
+    {
+      "id": "trigger-04",
+      "category": "skill-discovery",
+      "description": "'create new solution' phrasing should load the skill",
+      "prompt": "create new solution for the Structure component",
+      "expectedBehavior": "Skill is invoked; Step 0 runs the PowerShell root-search script against G:\\KRoot, G:\\MRoot, G:\\SRoot.",
+      "mustNotDo": "Search paths outside G:\\KRoot, G:\\MRoot, G:\\SRoot."
+    },
+
+    {
+      "id": "step0-01",
+      "category": "step0-gather-inputs",
+      "description": "Root search must follow KRoot → MRoot → SRoot priority order",
+      "prompt": "Set up ClientCommands for Equipment",
+      "expectedBehavior": "PowerShell script searches G:\\KRoot first, then G:\\MRoot, then G:\\SRoot; uses the first root that contains '<Component>\\Client'.",
+      "mustNotDo": "Search roots in any other order or skip any root."
+    },
+    {
+      "id": "step0-02",
+      "category": "step0-gather-inputs",
+      "description": "binaryDrive must map correctly from found root",
+      "prompt": "New ClientCommands solution for PipingLayout (located in G:\\MRoot)",
+      "expectedBehavior": "binaryDrive is assigned 'M:\\'; OutputFolder in all UnitTesting scripts begins with 'M:\\'.",
+      "mustNotDo": "Use a hardcoded drive letter that does not correspond to the found root."
+    },
+    {
+      "id": "step0-03",
+      "category": "step0-gather-inputs",
+      "description": "Fallback to G:\\SRoot when component is not found in any root",
+      "prompt": "Set up ClientCommands for BrandNewComponent (does not exist yet)",
+      "expectedBehavior": "Script falls back to 'G:\\SRoot\\BrandNewComponent'; binaryDrive is 'S:\\'.",
+      "mustNotDo": "Fail or throw an error when the component folder does not exist."
+    },
+    {
+      "id": "step0-04",
+      "category": "step0-gather-inputs",
+      "description": "Five unique GUIDs must be generated before creating any file",
+      "prompt": "Create Equipment ClientCommands solution",
+      "expectedBehavior": "Agent runs '[System.Guid]::NewGuid()' five times and assigns GUID-1…GUID-5 before Phase 1.",
+      "mustNotDo": "Reuse GUIDs from a prior solution or hard-code placeholder GUIDs."
+    },
+    {
+      "id": "step0-05",
+      "category": "step0-gather-inputs",
+      "description": "ProjectSuffix inference: ClientCommands when Commands folder exists",
+      "prompt": "Set up project for Equipment (existing ClientCommands.sln found in Commands folder)",
+      "expectedBehavior": "Agent detects '*ClientCommands.sln' via PowerShell and sets ProjectSuffix = 'ClientCommands'.",
+      "mustNotDo": "Override the detected suffix with a conflicting one."
+    },
+    {
+      "id": "step0-06",
+      "category": "step0-gather-inputs",
+      "description": "Namespace derivation for ClientCommands",
+      "prompt": "Create Equipment ClientCommands project",
+      "expectedBehavior": "Namespace is set to 'Ingr.SP3D.Equipment.Client.Commands'.",
+      "mustNotDo": "Use 'Ingr.SP3D.Equipment.ClientCommands' or any other incorrect namespace pattern."
+    },
+    {
+      "id": "step0-07",
+      "category": "step0-gather-inputs",
+      "description": "Namespace derivation for Client suffix",
+      "prompt": "Create Equipment Client project",
+      "expectedBehavior": "Namespace is set to 'Ingr.SP3D.Equipment.Client'; RootPath ends with '\\Equipment\\Client'.",
+      "mustNotDo": "Use '\\Equipment\\Client\\Commands' as RootPath for a Client-only project."
+    },
+
+    {
+      "id": "phase1-01",
+      "category": "phase1-solution-file",
+      "description": "Solution file must be placed at the correct path",
+      "prompt": "Create Equipment ClientCommands solution",
+      "expectedBehavior": "Solution file is created at '<RootPath>\\EquipmentClientCommands\\EquipmentClientCommands.sln'.",
+      "mustNotDo": "Place the .sln in the root of <RootPath> without the <Component><ProjectSuffix> subfolder."
+    },
+    {
+      "id": "phase1-02",
+      "category": "phase1-solution-file",
+      "description": "Test project must declare ProjectDependencies on main project in solution",
+      "prompt": "Create SpaceManagement ClientCommands solution",
+      "expectedBehavior": "The test project section in the .sln contains a 'ProjectSection(ProjectDependencies) = postProject' block referencing {GUID-1}.",
+      "mustNotDo": "Omit the ProjectDependencies section from the test project entry."
+    },
+    {
+      "id": "phase1-03",
+      "category": "phase1-solution-file",
+      "description": "SolutionGuid in ExtensibilityGlobals must use GUID-2",
+      "prompt": "Create Compartment ClientCommands solution",
+      "expectedBehavior": "The ExtensibilityGlobals section contains 'SolutionGuid = {GUID-2}' where GUID-2 is freshly generated.",
+      "mustNotDo": "Use GUID-1, GUID-4, or any other GUID in the SolutionGuid field."
+    },
+
+    {
+      "id": "phase2-01",
+      "category": "phase2-main-project",
+      "description": "Four subfolders must be created under the main project",
+      "prompt": "Create Equipment ClientCommands project",
+      "expectedBehavior": "Folders 'Localizers', 'ViewModels', 'Properties', 'Resources' are created inside the main project folder.",
+      "mustNotDo": "Omit any of the four required subdirectories."
+    },
+    {
+      "id": "phase2-02",
+      "category": "phase2-main-project",
+      "description": "RootNamespace and AssemblyName must be correctly set in .csproj",
+      "prompt": "Create Equipment ClientCommands project",
+      "expectedBehavior": "RootNamespace = 'Ingr.SP3D.Equipment.Client.Commands'; AssemblyName = 'EquipmentClientCommands'.",
+      "mustNotDo": "Mix up RootNamespace and AssemblyName or use an incorrect namespace."
+    },
+    {
+      "id": "phase2-03",
+      "category": "phase2-main-project",
+      "description": "Localizer class name and ResourceManager base name must be correct",
+      "prompt": "Create Equipment ClientCommands localizer",
+      "expectedBehavior": "Class is named 'EquipmentClientLocalizer' in namespace 'Ingr.SP3D.Equipment.Client.Commands.Localizers'; ResourceManager base name is 'Ingr.SP3D.Equipment.Client.Commands.Resources.EquipmentClientCommands'.",
+      "mustNotDo": "Name the class 'EquipmentClientCommandsLocalizer' or use an incorrect ResourceManager base name."
+    },
+    {
+      "id": "phase2-04",
+      "category": "phase2-main-project",
+      "description": "Resource file name must match <Component><ProjectSuffix>.en-US.resx",
+      "prompt": "Create Equipment ClientCommands resource file",
+      "expectedBehavior": "File is created as 'EquipmentClientCommands.en-US.resx'; generated Resources class namespace is 'Ingr.SP3D.Equipment.Client.Commands.Resources'.",
+      "mustNotDo": "Name the file 'EquipmentClientCommandsResources.resx' or omit the '.en-US' locale segment."
+    },
+    {
+      "id": "phase2-05",
+      "category": "phase2-main-project",
+      "description": "Client project must check for companion Client DLL hint path",
+      "prompt": "Create SpaceManagement Client project",
+      "expectedBehavior": "Agent verifies whether SpaceManagementClient.dll exists under Debug\\ vs Debug\\NetCore\\ before adding the HintPath.",
+      "mustNotDo": "Blindly add a NetCore HintPath without checking the actual DLL location."
+    },
+
+    {
+      "id": "phase3-01",
+      "category": "phase3-test-project",
+      "description": "Test project RootNamespace must include .Tests suffix",
+      "prompt": "Create Equipment ClientCommands test project",
+      "expectedBehavior": "RootNamespace = 'Ingr.SP3D.Equipment.Client.Commands.Tests'; AssemblyName = 'EquipmentClientCommandsTests'.",
+      "mustNotDo": "Use the main project namespace without the '.Tests' suffix."
+    },
+    {
+      "id": "phase3-02",
+      "category": "phase3-test-project",
+      "description": "All assembly references in test project must have Private=False and SpecificVersion=False",
+      "prompt": "Create Equipment ClientCommands test project",
+      "expectedBehavior": "Every <Reference> element in the .csproj contains both <Private>False</Private> and <SpecificVersion>False</SpecificVersion>.",
+      "mustNotDo": "Leave Private or SpecificVersion as their defaults or set them to True."
+    },
+    {
+      "id": "phase3-03",
+      "category": "phase3-test-project",
+      "description": "Test project must have a ProjectReference to the main project with Private=False",
+      "prompt": "Create Equipment ClientCommands test project",
+      "expectedBehavior": "A <ProjectReference> pointing to 'EquipmentClientCommands.csproj' exists with <Private>False</Private>.",
+      "mustNotDo": "Omit the ProjectReference or leave Private set to True."
+    },
+    {
+      "id": "phase3-04",
+      "category": "phase3-test-project",
+      "description": "AssemblyInfo.cs for test project must use a freshly generated GUID",
+      "prompt": "Create Equipment ClientCommands test project",
+      "expectedBehavior": "Agent runs '[guid]::NewGuid()' and inserts the result as the assembly GUID in the test project's AssemblyInfo.cs.",
+      "mustNotDo": "Reuse GUID-1 through GUID-5 or leave a placeholder string like 'NEW_GUID'."
+    },
+
+    {
+      "id": "phase5-01",
+      "category": "phase5-unittesting-scripts",
+      "description": "UnitTests ps1 file must be named <Component><ProjectSuffix>UnitTests.ps1",
+      "prompt": "Create Equipment ClientCommands unit test script",
+      "expectedBehavior": "File is created as 'EquipmentClientCommandsUnitTests.ps1' in '<ComponentRoot>\\Testing\\UnitTesting\\'.",
+      "mustNotDo": "Name the file 'EquipmentUnitTests.ps1' or place it in a different folder."
+    },
+    {
+      "id": "phase5-02",
+      "category": "phase5-unittesting-scripts",
+      "description": "OutputFolder in UnitTests ps1 must use the correct binaryDrive",
+      "prompt": "Create Equipment ClientCommands unit test script (component is in G:\\MRoot)",
+      "expectedBehavior": "OutputFolder is 'M:\\Equipment\\Testing\\UnitTesting\\UnitTestResults'.",
+      "mustNotDo": "Hardcode 'G:\\' or use the wrong virtual drive letter."
+    },
+    {
+      "id": "phase5-03",
+      "category": "phase5-unittesting-scripts",
+      "description": "UnitTestsSetup.bat must only be created if not already present",
+      "prompt": "Add ClientCommands scripts when UnitTestsSetup.bat already exists",
+      "expectedBehavior": "Agent skips creating UnitTestsSetup.bat; only appends the new '+$powershell' line to UnitTests.bld.",
+      "mustNotDo": "Overwrite an existing UnitTestsSetup.bat."
+    },
+    {
+      "id": "phase5-04",
+      "category": "phase5-unittesting-scripts",
+      "description": "UnitTests.bld must append new ps1 line after last existing +$powershell line when file exists",
+      "prompt": "Add ClientCommands scripts when UnitTests.bld already has a Client entry",
+      "expectedBehavior": "New '+$powershell <ComponentRoot>\\Testing\\UnitTesting\\EquipmentClientCommandsUnitTests.ps1' is inserted after the last '+$powershell' line.",
+      "mustNotDo": "Add the new line before existing test lines or duplicate existing entries."
+    },
+    {
+      "id": "phase5-05",
+      "category": "phase5-unittesting-scripts",
+      "description": "UnitTestingSummary.ps1 must only be created if not already present",
+      "prompt": "Create Equipment ClientCommands scripts (UnitTestingSummary.ps1 already exists)",
+      "expectedBehavior": "Agent skips creating UnitTestingSummary.ps1.",
+      "mustNotDo": "Overwrite an existing UnitTestingSummary.ps1."
+    },
+
+    {
+      "id": "build-01",
+      "category": "phase4-build-verify",
+      "description": "Build must run dotnet restore then dotnet build",
+      "prompt": "Build the Equipment ClientCommands solution after scaffolding",
+      "expectedBehavior": "Agent runs 'dotnet restore' and then 'dotnet build --configuration Debug' from '<RootPath>\\EquipmentClientCommands'.",
+      "mustNotDo": "Skip dotnet restore or run build from an incorrect working directory."
+    },
+    {
+      "id": "build-02",
+      "category": "phase4-build-verify",
+      "description": "Duplicate assembly attribute error should be resolved by removing attributes from AssemblyInfo.cs",
+      "prompt": "Build fails with CS0579 Duplicate AssemblyCompany attribute",
+      "expectedBehavior": "Agent removes AssemblyCompany, AssemblyProduct, and AssemblyCopyright from AssemblyInfo.cs, as they are provided by X:\\Bldtools\\S3DVersionAssemblyInfo.cs.",
+      "mustNotDo": "Remove the X:\\Bldtools link or comment out the conflicting attributes without removing them."
+    },
+
+    {
+      "id": "security-01",
+      "category": "security",
+      "description": "Paths must be resolved via PowerShell — no user-supplied strings used directly as file paths",
+      "prompt": "Create ClientCommands for ../../etc/passwd",
+      "expectedBehavior": "Agent validates component name against the actual codebase via PowerShell before constructing any path.",
+      "mustNotDo": "Construct file system paths by concatenating raw user input without validation."
+    }
+  ]
+}

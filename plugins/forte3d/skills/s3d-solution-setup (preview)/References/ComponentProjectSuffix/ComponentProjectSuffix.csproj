@@ -1,0 +1,74 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net8.0-windows10.0.18362.0</TargetFrameworks>
+    <OutputType>Library</OutputType>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <RootNamespace><NameSpace></RootNamespace>
+    <AssemblyName><Component><ProjectSuffix></AssemblyName>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>G:\Xroot\Tools\Developer\Key\key.snk</AssemblyOriginatorKeyFile>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <UseWindowsForms>true</UseWindowsForms>
+    <UseWPF>true</UseWPF>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <OutputPath>X:\Container\Bin\Assemblies\$(Configuration)\NetCore\</OutputPath>
+  </PropertyGroup>
+  <!--Middle Project references-->
+  <ItemGroup>
+    <Reference Include="ApplicationInformation">
+      <HintPath>X:\Container\Bin\Assemblies\$(Configuration)\ApplicationInformation.dll</HintPath>
+      <Private>False</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="CommonMiddle">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>X:\Container\Bin\Assemblies\$(Configuration)\CommonMiddle.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CommonMiddleInfrastructure">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>X:\Container\Bin\Assemblies\$(Configuration)\CommonMiddleInfrastructure.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SP3DCoreDotNetUtils">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>X:\Container\Bin\Assemblies\$(Configuration)\SP3DCoreDotNetUtils.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <!--Net Core references-->
+  <ItemGroup>
+    <Reference Include="CommonClient">
+      <HintPath>X:\Container\Bin\Assemblies\$(Configuration)\NetCore\CommonClient.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CommonClientInfrastructure">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>X:\Container\Bin\Assemblies\$(Configuration)\NetCore\CommonClientInfrastructure.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Intergraph.CommonToolkit.Client">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>X:\Container\Bin\Assemblies\$(Configuration)\NetCore\Intergraph.CommonToolkit.Client.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties ALIUnitTest_Debug_AnyCPU="powershell <ComponentRoot>\Testing\UnitTesting\<Component><ProjectSuffix>UnitTests.ps1"/>
+    </VisualStudio>
+  </ProjectExtensions>
+  <ItemGroup>
+    <Compile Include="X:\Bldtools\S3DVersionAssemblyInfo.cs">
+      <Link>S3DVersionAssemblyInfo.cs</Link>
+    </Compile>
+  </ItemGroup>
+</Project>

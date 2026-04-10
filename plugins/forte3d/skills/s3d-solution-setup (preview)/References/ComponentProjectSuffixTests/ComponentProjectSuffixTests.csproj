@@ -1,0 +1,76 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net8.0-windows10.0.18362.0</TargetFrameworks>
+    <OutputType>Library</OutputType>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <IsTestProject>true</IsTestProject>
+    <SelfContained>true</SelfContained>
+    <RootNamespace><NameSpace>.Tests</RootNamespace>
+    <AssemblyName><Component><ProjectSuffix>Tests</AssemblyName>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>G:\Xroot\Tools\Developer\Key\key.snk</AssemblyOriginatorKeyFile>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <UseWindowsForms>true</UseWindowsForms>
+    <UseWPF>true</UseWPF>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <OutputPath>X:\Container\Bin\Assemblies\$(Configuration)\NetCore\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\NetCore\</IntermediateOutputPath>
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="MSTest" />
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>X:\Container\Bin\Assemblies\$(Configuration)\NetStandard\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CommonClient">
+      <HintPath>X:\Container\Bin\Assemblies\$(Configuration)\NetCore\CommonClient.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="<Component><ProjectSuffix>">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>X:\Container\Bin\Assemblies\$(Configuration)\NetCore\<Component><ProjectSuffix>.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CommonClientInfrastructure">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>X:\Container\Bin\Assemblies\$(Configuration)\NetCore\CommonClientInfrastructure.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CommonMiddle">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <HintPath>X:\Container\Bin\Assemblies\$(Configuration)\CommonMiddle.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+        <Reference Include="CommonNetCoreUnitTests">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>X:\Container\Bin\Assemblies\$(Configuration)\NetCore\CommonNetCoreUnitTests.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CommonMiddleInfrastructure">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <HintPath>X:\Container\Bin\Assemblies\$(Configuration)\CommonMiddleInfrastructure.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <!--ProjectExtensions>
+    <VisualStudio>
+      <UserProperties ALIUnitTest_Debug_AnyCPU="powershell G:\Mroot\CommonApp\Testing\UnitTesting\<Component><ProjectSuffix>UnitTests.ps1" />
+    </VisualStudio>
+  </ProjectExtensions!-->
+  <ItemGroup>
+    <Compile Include="X:\Bldtools\S3DVersionAssemblyInfo.cs">
+      <Link>S3DVersionAssemblyInfo.cs</Link>
+    </Compile>
+  </ItemGroup>
+</Project>
