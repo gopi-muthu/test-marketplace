@@ -11,13 +11,15 @@
     "pr review",
     "mcat",
     "no ui command",
-    "dialog command"
+    "dialog command",
+	"s3d solution setup"
   ],
   "skills": [
     "./skills/code-review",
     "./skills/write-mcat",
     "./skills/command-entry(preview)",
     "./skills/noui-command(preview)",
-    "./skills/dialog-command(preview)"      
+    "./skills/dialog-command(preview)",
+    "./skills/s3d-solution-setup (preview)"  
   ]
 }
