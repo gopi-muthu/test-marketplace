@@ -72,8 +72,8 @@ Assign: `GUID-1` = main project · `GUID-2` = solution · `GUID-3` = main projec
 
 ```
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.5.33627.172
+# Visual Studio Version 18
+VisualStudioVersion = 18.0.11222.15 d18.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{GUID-3}") = "<Component><ProjectSuffix>", "<Component><ProjectSuffix>\<Component><ProjectSuffix>.csproj", "{GUID-1}"
 EndProject
