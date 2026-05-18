@@ -15,4 +15,3 @@ creation and management, Azure DevOps pull request code review and S3d Client pr
 | `command-entry` *(preview)*   | Add new S3Dx command entries to `Commands.xml`, `DevelopmentCommands.xml`, `Ribbon.xml`, and `DevelopmentRibbon.xml`.                                                                |
 | `dialog-command` *(preview)*  | Generate S3Dx Dialog Commands in C# using `BaseFrameworkCommand` with `CommandUILayout.Dialog` for modal dialog workflows.                                                           |
 | `noui-command` *(preview)*    | Generate S3Dx NoUI Commands in C# using `BaseFrameworkCommand` with `CommandUILayout.NoUI` for background, fire-and-forget, and batch operations.                                    |
-| `s3d-solution-setup` *(preview)*    | Generate S3Dx Client projects or Client Command projects along with Test projects and required files and correstion solution file.                             |
