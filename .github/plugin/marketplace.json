@@ -2,7 +2,7 @@
   "name": "octave-copilot-plugins",
   "metadata": {
     "description": "Octave plugins, agents, prompts, and skills",
-    "version": "1.0.0",
+    "version": "1.0.001",
     "pluginRoot": "./plugins"
   },
   "owner": {
